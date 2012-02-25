@@ -9,6 +9,7 @@ gem 'pg'
 gem 'state_machine'
 gem 'haml'
 gem 'json'
+gem 'ya_acl'
 
 # Gems used only for assets and not required
 # in production environments by default.

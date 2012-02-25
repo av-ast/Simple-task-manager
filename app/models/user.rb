@@ -8,4 +8,9 @@ class User < ActiveRecord::Base
     validates :name, :role, :presence => true
     validates_presence_of :password, :on => :create
     validates :email, :presence => true, :uniqueness => true, :email_format => true
+
+    def roles
+        [:admin, :editor, :operator]
+    end
 end
+

@@ -1,4 +1,7 @@
 class CommentsController < ApplicationController
+  before_filter :require_login
+  before_filter :ya_acl
+
   # POST /comments
   # POST /comments.json
   def create

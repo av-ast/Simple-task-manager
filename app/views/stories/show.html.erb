@@ -1,13 +1,8 @@
-<p id="notice"><%= notice %></p>
+<h2><%= @story.title %></h2>
 
 <p>
-  <b>User:</b>
+  <b>Author:</b>
   <%= @story.user.name %>&nbsp;&lt;<%= @story.user.email %>&gt;
-</p>
-
-<p>
-  <b>Title:</b>
-  <%= @story.title %>
 </p>
 
 <p>
@@ -15,10 +10,9 @@
   <%= @story.state %>
 </p>
 
-<p>
-  <b>Content:</b>
+<div class="story-content">
   <%= @story.content %>
-</p>
+</div>
 
 <h2>Post a comment</h2>
 <%= form_for @comment do |f| %>

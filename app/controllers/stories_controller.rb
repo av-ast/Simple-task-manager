@@ -1,11 +1,12 @@
 class StoriesController < ApplicationController
   before_filter :require_login
+  before_filter :ya_acl
 
   # GET /stories
   # GET /stories.json
   def index
     @users = User.all
-
+    
     if params[:filter]
         params[:filter].delete(:user_id) if params[:filter][:user_id] == ""
         params[:filter].delete(:state) if params[:filter][:state] == ""

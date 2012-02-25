@@ -21,7 +21,7 @@
   </div>
   <div class="field">
     <%= f.label :role %><br />
-    <%= f.text_field :role %>
+    <%= f.select "role", options_for_select(@user.roles, @user.role) %>
   </div>
   <div class="field">
     <%= f.label :password %><br />
