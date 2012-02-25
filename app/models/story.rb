@@ -1,6 +1,8 @@
 class Story < ActiveRecord::Base
     belongs_to :user
 
+    scope :filter, lambda{ |params| { :conditions => params } }
+
     validates :user_id, :title, :content, :state, :presence => true
     validates :title, :length => { :maximum => 255 }
     

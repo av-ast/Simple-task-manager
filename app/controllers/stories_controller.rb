@@ -4,7 +4,15 @@ class StoriesController < ApplicationController
   # GET /stories
   # GET /stories.json
   def index
-    @stories = Story.all
+    @users = User.all
+
+    if params[:filter]
+        params[:filter].delete(:user_id) if params[:filter][:user_id] == ""
+        params[:filter].delete(:state) if params[:filter][:state] == ""
+        @stories = Story.filter(params[:filter])
+    else
+        @stories = Story.all
+    end
 
     respond_to do |format|
       format.html # index.html.erb

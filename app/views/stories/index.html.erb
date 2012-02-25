@@ -1,5 +1,24 @@
 <h1>Listing stories</h1>
 
+<%= form_for :filter, :method => :get do |f| %>
+<table>
+  <tr>
+    <td>
+        <%= f.select "user_id", options_from_collection_for_select(@users.unshift(User.new(:id=>nil, :name=>'- Select user -')), "id", "name", (params[:filter] ? params[:filter][:user_id] : nil)) %>
+    </td>
+    <td>
+        <%= f.select :state,
+             options_for_select(Story.state_machine.states.map{|x| x.human_name}, (params[:filter] ? params[:filter][:state] : nil)),
+             {:include_blank => '- Select story state -'} %>
+    </td>
+    <td>
+        <button type="submit" class="btn">Filter</button>
+        <!--%= f.submit "Filter" %-->
+    </td>
+  </tr>
+</table>
+<% end %>
+
 <table border="1" cellpadding="5">
   <tr>
     <th>Id</th>
