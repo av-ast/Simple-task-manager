@@ -11,15 +11,30 @@
 </p>
 
 <p>
-  <b>Content:</b>
-  <%= @story.content %>
-</p>
-
-<p>
   <b>State:</b>
   <%= @story.state %>
 </p>
 
+<p>
+  <b>Content:</b>
+  <%= @story.content %>
+</p>
+
+<h2>Post a comment</h2>
+<%= form_for @comment do |f| %>
+    <input type="hidden" name=comment[user_id] value="<%= @current_user.id %>">
+    <input type="hidden" name=comment[story_id] value="<%= @story.id %>">
+    <%= f.text_area :text, :rows => 5 %>
+    <br />
+    <%= f.submit "Post" %>
+<% end %>
+
+<% @comments.each do |c| %>
+    <div>
+        <div><%= c.created_at.strftime("%d %b %H:%M")%>&nbsp;<%= link_to c.user.name || c.user.email, c.user %><% if c.user == @current_user || current_user.role == "admin" %>&nbsp;<%= link_to 'Destroy', c, :confirm => 'Are you sure?', :method => :delete %><% end %></div>
+        <div><%= c.text%></div>
+    </div>
+<% end %>
 
 <%= link_to 'Edit', edit_story_path(@story) %> |
 <%= link_to 'Back', stories_path %>

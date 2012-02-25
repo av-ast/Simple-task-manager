@@ -1,5 +1,6 @@
 class Story < ActiveRecord::Base
     belongs_to :user
+    has_many :comments, :dependent => :destroy
 
     scope :filter, lambda{ |params| { :conditions => params } }
 

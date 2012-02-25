@@ -10,7 +10,15 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120224105930) do
+ActiveRecord::Schema.define(:version => 20120225105504) do
+
+  create_table "comments", :force => true do |t|
+    t.integer  "user_id"
+    t.integer  "story_id"
+    t.text     "text"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
 
   create_table "stories", :force => true do |t|
     t.integer  "user_id"

@@ -24,6 +24,8 @@ class StoriesController < ApplicationController
   # GET /stories/1.json
   def show
     @story = Story.find(params[:id])
+    @comment = Comment.new
+    @comments = Comment.where(:story_id => params[:id])
 
     respond_to do |format|
       format.html # show.html.erb

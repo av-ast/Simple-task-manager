@@ -1,6 +1,6 @@
 <h1>Listing stories</h1>
 
-<%= form_for :filter, :method => :get do |f| %>
+<%= form_for :filter do |f| %>
 <table>
   <tr>
     <td>
@@ -12,8 +12,7 @@
              {:include_blank => '- Select story state -'} %>
     </td>
     <td>
-        <button type="submit" class="btn">Filter</button>
-        <!--%= f.submit "Filter" %-->
+        <%= f.submit "Filter" %>
     </td>
   </tr>
 </table>
@@ -24,21 +23,23 @@
     <th>Id</th>
     <th>User</th>
     <th>Title</th>
+    <th>Comments</th>
     <th>Content</th>
     <th>State</th>
+    <th></th>
     <th></th>
   </tr>
 
 <% @stories.each_with_index do |story,i| %>
   <tr>
-    <td><%= story.id %></td>
-    <td><%= story.user.name %> &lt;<%= story.user.email %>&gt;</td>
-    <td><%= story.title %></td>
+    <td><%= link_to story.id, story %></td>
+    <td><%= link_to story.user.name || story.user.email, story.user %></td>
+    <td><%= link_to story.title, story_path(story) %></td>
+    <td><%= story.comments.size %></td>
     <td><%= truncate(story.content, :length => 50, :omission => '...') %></td>
     <td><%= story.state %></td>
-    <td><%= link_to 'Show', story %>
-    <%= link_to 'Edit', edit_story_path(story) %>
-    <%= link_to 'Destroy', story, :confirm => 'Are you sure?', :method => :delete %></td>
+    <td><%= link_to 'Edit', edit_story_path(story) %></td>
+    <td><%= link_to 'Destroy', story, :confirm => 'Are you sure?', :method => :delete %></td>
   </tr>
 <% end %>
 </table>

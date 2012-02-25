@@ -1,11 +1,24 @@
+class FilterRecognizer
+  def initialize(query_param)
+    @query_param = query_param.to_sym
+  end
+
+  def matches?(request)
+    request.params.has_key?(@query_param)
+  end
+end
+
 SimpleTaskManager::Application.routes.draw do
 
   get "login" => "sessions#new", :as => "login"
   get "logout" => "sessions#destroy", :as => "logout"
 
+  post "stories" => "stories#index", :constraints => FilterRecognizer.new(:filter)
+
   resources :users
   resources :sessions
   resources :stories
+  resources :comments
 
   # The priority is based upon order of creation:
   # first created -> highest priority.
