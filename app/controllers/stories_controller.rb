@@ -1,4 +1,6 @@
 class StoriesController < ApplicationController
+  before_filter :require_login
+
   # GET /stories
   # GET /stories.json
   def index
@@ -25,6 +27,7 @@ class StoriesController < ApplicationController
   # GET /stories/new.json
   def new
     @story = Story.new
+    @users = User.all
 
     respond_to do |format|
       format.html # new.html.erb
@@ -35,6 +38,7 @@ class StoriesController < ApplicationController
   # GET /stories/1/edit
   def edit
     @story = Story.find(params[:id])
+    @users = User.all
   end
 
   # POST /stories
@@ -80,4 +84,5 @@ class StoriesController < ApplicationController
       format.json { head :no_content }
     end
   end
+
 end

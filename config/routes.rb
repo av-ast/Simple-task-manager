@@ -1,4 +1,10 @@
 SimpleTaskManager::Application.routes.draw do
+
+  get "login" => "sessions#new", :as => "login"
+  get "logout" => "sessions#destroy", :as => "logout"
+
+  resources :users
+  resources :sessions
   resources :stories
 
   # The priority is based upon order of creation:

@@ -17,11 +17,15 @@
   </div>
   <div class="field">
     <%= f.label :content %><br />
-    <%= f.text_area :content %>
+    <%= f.text_area :content, :size => "50x10" %>
+  </div>
+  <div class="field">
+    <%= f.label :user %><br />
+    <%= f.select "user_id", options_from_collection_for_select(@users, "id", "name", @story.user_id) %>
   </div>
   <div class="field">
     <%= f.label :state %><br />
-    <%= f.text_field :state %>
+    <%= f.select "state", options_for_select(@story.state_events.unshift(@story.state)) %>
   </div>
   <div class="actions">
     <%= f.submit %>

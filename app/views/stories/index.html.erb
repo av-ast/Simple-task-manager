@@ -2,16 +2,20 @@
 
 <table border="1" cellpadding="5">
   <tr>
+    <th>Id</th>
+    <th>User</th>
     <th>Title</th>
     <th>Content</th>
     <th>State</th>
     <th></th>
   </tr>
 
-<% @stories.each do |story| %>
+<% @stories.each_with_index do |story,i| %>
   <tr>
+    <td><%= story.id %></td>
+    <td><%= story.user.name %> &lt;<%= story.user.email %>&gt;</td>
     <td><%= story.title %></td>
-    <td><%= story.content %></td>
+    <td><%= truncate(story.content, :length => 50, :omission => '...') %></td>
     <td><%= story.state %></td>
     <td><%= link_to 'Show', story %>
     <%= link_to 'Edit', edit_story_path(story) %>
