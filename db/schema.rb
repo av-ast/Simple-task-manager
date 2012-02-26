@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120225105504) do
+ActiveRecord::Schema.define(:version => 20120226223535) do
 
   create_table "comments", :force => true do |t|
     t.integer  "user_id"
@@ -19,6 +19,9 @@ ActiveRecord::Schema.define(:version => 20120225105504) do
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
   end
+
+  add_index "comments", ["story_id"], :name => "index_comments_on_story_id"
+  add_index "comments", ["user_id"], :name => "index_comments_on_user_id"
 
   create_table "stories", :force => true do |t|
     t.integer  "user_id"
@@ -29,6 +32,10 @@ ActiveRecord::Schema.define(:version => 20120225105504) do
     t.datetime "updated_at", :null => false
   end
 
+  add_index "stories", ["state"], :name => "index_stories_on_state"
+  add_index "stories", ["title"], :name => "index_stories_on_title"
+  add_index "stories", ["user_id"], :name => "index_stories_on_user_id"
+
   create_table "users", :force => true do |t|
     t.string   "email"
     t.string   "name"
@@ -37,5 +44,9 @@ ActiveRecord::Schema.define(:version => 20120225105504) do
     t.datetime "created_at",      :null => false
     t.datetime "updated_at",      :null => false
   end
+
+  add_index "users", ["email"], :name => "index_users_on_email", :unique => true
+  add_index "users", ["name"], :name => "index_users_on_name"
+  add_index "users", ["role"], :name => "index_users_on_role"
 
 end
