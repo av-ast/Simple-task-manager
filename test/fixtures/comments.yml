@@ -3,9 +3,14 @@
 one:
   user_id: 1
   story_id: 1
-  text: MyText
+  text: this is a comment to the first story
 
 two:
-  user_id: 1
-  story_id: 1
-  text: MyText
+  user_id: 2
+  story_id: 2
+  text: comment to the second story
+
+empty:
+  user_id: 2
+  story_id: 2
+  text:

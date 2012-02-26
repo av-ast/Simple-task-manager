@@ -10,7 +10,8 @@ class User < ActiveRecord::Base
     validates :email, :presence => true, :uniqueness => true, :email_format => true
 
     def roles
-        [:admin, :editor, :operator]
+        acl = YaAcl::Acl.instance
+        acl.roles.keys
     end
 end
 

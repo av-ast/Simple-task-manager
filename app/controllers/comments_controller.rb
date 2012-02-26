@@ -5,7 +5,8 @@ class CommentsController < ApplicationController
   # POST /comments
   # POST /comments.json
   def create
-    @comment = Comment.new(params[:comment]).save
+    @comment = Comment.new(params[:comment])
+    @comment.save
     redirect_to :back
   end
 

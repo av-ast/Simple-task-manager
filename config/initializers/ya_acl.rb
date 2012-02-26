@@ -5,16 +5,6 @@ YaAcl::Builder.build do
     role :operator
   end
 
-  asserts do
-    assert :assert_name, [:current_user_id, :another_user_id] do
-      current_user_id == another_user_id
-    end
-
-    assert :another_assert_name, [:current_user_id, :another_user_id] do
-      current_user_id != another_user_id
-    end
-  end
-
   resources :admin do 
     resource 'users' do
         privilege :index, [:editor, :operator]
@@ -34,7 +24,9 @@ YaAcl::Builder.build do
         privilege :update
         privilege :destroy
     end
-    resource 'comments', [:editor, :operator] do
+    resource 'comments', [:editor] do
+        privilege :create, [:operator]
+        privilege :destroy, [:operator]
     end
   end
 end
