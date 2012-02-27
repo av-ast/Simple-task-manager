@@ -11,10 +11,10 @@ gem 'haml-rails'
 gem 'json'
 gem 'ya_acl'
 gem 'jquery-rails'
+gem 'hpricot'
+gem 'ruby_parser'
 
 group :development do
-  gem 'hpricot'
-  gem 'ruby_parser'
 end
 
 # Gems used only for assets and not required
