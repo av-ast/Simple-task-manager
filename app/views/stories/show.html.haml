@@ -1,0 +1,36 @@
+%fieldset
+  %legend= @story.title
+%p
+  %b Author:
+  = @story.user.name
+  \&nbsp;&lt;#{@story.user.email}&gt;
+%p
+  %b State:
+  = @story.state
+.story-content
+  = @story.content
+%br/
+%h4 Post a comment
+= form_for @comment do |f|
+  %input{:name => "comment[user_id]", :type => "hidden", :value => @current_user.id}/
+  %input{:name => "comment[story_id]", :type => "hidden", :value => @story.id}/
+  = f.text_area :text, :size => "50x5"
+  %br/
+  = f.submit "Post", :class => "btn"
+%table.table.table-striped.table-bordered.table-condensed
+  - @comments.each do |c|
+    %tr
+      %td
+        .clear
+          .float-left
+            = c.created_at.strftime("%d %b %H:%M")
+            \&nbsp;by&nbsp
+          .float-left
+            = link_to c.user.name || c.user.email, c.user
+          - if c.user == @current_user || current_user.role == "admin"
+            .float-right
+              = link_to 'Destroy', c, :confirm => 'Are you sure?', :method => :delete
+        .clear= c.text
+= link_to 'Edit', edit_story_path(@story)
+|
+\#{link_to 'Back', stories_path}

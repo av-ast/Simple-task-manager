@@ -1,0 +1,25 @@
+!!!
+%html
+  %head
+    %title Simple Task Manager
+    = stylesheet_link_tag    "application", :media => "all"
+    = javascript_include_tag "application"
+    = csrf_meta_tags
+  %body{:class => params[:controller]}
+    .top-nav-bar
+      - if current_user
+        .float-left
+          = link_to 'Home', root_path
+          \&nbsp;
+        .float-left= link_to 'Users', users_path
+        .float-right= link_to 'Logout', logout_path
+        .float-right
+          logged as:&nbsp;
+          %b>= current_user.name
+          \&nbsp;
+    #container.clear
+      - flash.each do |name, msg|
+        %div{:class => "alert alert-#{name}"}
+          %p
+            = content_tag :div, msg, :id => "flash_#{name}"
+      = yield

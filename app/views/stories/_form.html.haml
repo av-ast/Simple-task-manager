@@ -1,0 +1,23 @@
+= form_for(@story) do |f|
+  - if @story.errors.any?
+    #error_explanation
+      %h2
+        = pluralize(@story.errors.count, "error")
+        prohibited this story from being saved:
+      %ul
+        - @story.errors.full_messages.each do |msg|
+          %li= msg
+  .control-group
+    = f.label :title, :class => "control-label"
+    .controls= f.text_field :title
+  .control-group
+    = f.label :content, :class => "control-label"
+    .controls= f.text_area :content, :size => "150x10"
+  .control-group
+    = f.label :user, :class => "control-label"
+    .controls= f.select "user_id", options_from_collection_for_select(@users, "id", "name", @story.user_id)
+  .control-group
+    = f.label :state, :class => "control-label"
+    .controls= f.select "state", options_for_select(@story.state_events.unshift(@story.state))
+  .actions
+    = f.submit nil, :class => "btn btn-primary btn-large"

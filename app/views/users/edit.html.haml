@@ -1,0 +1,7 @@
+%fieldset
+  %legend
+    Editing: #{@user.name}
+= render 'form'
+= link_to 'Show', @user
+|
+\#{link_to 'Back', users_path}

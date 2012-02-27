@@ -1,0 +1,23 @@
+%fieldset
+  %legend Listing users
+%table.table.table-striped.table-bordered.table-condensed
+  %tr
+    %th Name
+    %th Email
+    %th Role
+    %th Stories
+    %th Comments
+    %th
+  - @users.each do |user|
+    %tr
+      %td= link_to user.name, user
+      %td= link_to user.email, user
+      %td= user.role
+      %td= user.stories.count
+      %td= user.comments.count
+      %td
+        = link_to 'Edit', edit_user_path(user)
+        %br/
+        = link_to 'Destroy', user, :confirm => 'Are you sure?', :method => :delete
+%br/
+= link_to 'New User', new_user_path

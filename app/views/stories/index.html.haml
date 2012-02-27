@@ -1,0 +1,36 @@
+%fieldset
+  %legend Listing stories
+= form_for :filter, :html => {:class => "well form-inline"} do |f|
+  %table
+    %tr
+      %td
+        = f.select "user_id", options_from_collection_for_select(@users.unshift(User.new(:id=>nil, :name=>'- Select user -')), "id", "name", (params[:filter] ? params[:filter][:user_id] : nil))
+      %td
+        = f.select :state,                                                                                                         |
+          options_for_select(Story.state_machine.states.map{|x| x.human_name}, (params[:filter] ? params[:filter][:state] : nil)), |
+          {:include_blank => '- Select story state -'}                                                                             |
+      %td
+        = f.submit "Filter", :class => "btn"
+%table.table.table-striped.table-bordered.table-condensed
+  %tr
+    %th Id
+    %th User
+    %th Title
+    %th Comments
+    %th Content
+    %th State
+    %th
+  - @stories.each_with_index do |story,i|
+    %tr
+      %td= link_to story.id, story
+      %td= link_to story.user.name || story.user.email, story.user
+      %td= link_to story.title, story_path(story)
+      %td= story.comments.size
+      %td= truncate(story.content, :length => 50, :omission => '...')
+      %td= story.state
+      %td
+        = link_to 'Edit', edit_story_path(story)
+        %br/
+        = link_to 'Destroy', story, :confirm => 'Are you sure?', :method => :delete
+%br/
+= link_to 'New Story', new_story_path
