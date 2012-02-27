@@ -2,11 +2,12 @@ class Story < ActiveRecord::Base
     belongs_to :user
     has_many :comments, :dependent => :destroy
 
+    validates_presence_of :user_id, :title, :content, :state, :content
+    validates_length_of :title, :maximum => 255
+    validates_length_of :content, :maximum => 100
+    
     scope :filter, lambda{ |params| { :conditions => params } }
 
-    validates :user_id, :title, :content, :state, :presence => true
-    validates :title, :length => { :maximum => 255 }
-    
     state_machine :initial => :new do
         state :new
         state :started

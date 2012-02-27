@@ -1,5 +1,5 @@
 %fieldset
-  %legend= @story.title
+  %legend= truncate(@story.title, :length => 50, :omission => '...')
 %p
   %b Author:
   = @story.user.name

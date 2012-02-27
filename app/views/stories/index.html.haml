@@ -24,7 +24,7 @@
     %tr
       %td= link_to story.id, story
       %td= link_to story.user.name || story.user.email, story.user
-      %td= link_to story.title, story_path(story)
+      %td= link_to truncate(story.title, :length => 50, :omission => '...'), story_path(story)
       %td= story.comments.size
       %td= truncate(story.content, :length => 50, :omission => '...')
       %td= story.state

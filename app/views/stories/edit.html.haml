@@ -1,6 +1,6 @@
 %fieldset
   %legend
-    Editing: #{@story.title}
+    Editing: #{truncate(@story.title, :length => 50, :omission => '...')}
 = render 'form'
 = link_to 'Show', @story
 |

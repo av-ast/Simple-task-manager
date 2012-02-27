@@ -6,7 +6,9 @@ class CommentsController < ApplicationController
   # POST /comments.json
   def create
     @comment = Comment.new(params[:comment])
-    @comment.save
+    unless @comment.save
+        flash[:error] = @comment.errors.full_messages.uniq.first
+    end
     redirect_to :back
   end
 

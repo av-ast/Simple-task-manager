@@ -56,6 +56,7 @@ class StoriesController < ApplicationController
   # POST /stories.json
   def create
     @story = Story.new(params[:story])
+    @users = User.all
 
     respond_to do |format|
       if @story.save
@@ -72,6 +73,7 @@ class StoriesController < ApplicationController
   # PUT /stories/1.json
   def update
     @story = Story.find(params[:id])
+    @users = User.all
 
     respond_to do |format|
       if @story.update_attributes(params[:story])
