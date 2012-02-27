@@ -11,27 +11,27 @@
     </div>
   <% end %>
 
-  <div class="field">
-    <%= f.label :email %><br />
-    <%= f.text_field :email %>
+  <div class="control-group">
+    <%= f.label :email, :class => "control-label" %>
+    <div class="controls"><%= f.text_field :email %></div>
   </div>
-  <div class="field">
-    <%= f.label :name %><br />
-    <%= f.text_field :name %>
+  <div class="control-group">
+    <%= f.label :name, :class => "control-label" %>
+    <div class="controls"><%= f.text_field :name %></div>
   </div>
-  <div class="field">
-    <%= f.label :role %><br />
-    <%= f.select "role", options_for_select(@user.roles, @user.role) %>
+  <div class="control-group">
+    <%= f.label :role, :class => "control-label" %>
+    <div class="controls"><%= f.select "role", options_for_select(@user.roles, @user.role) %></div>
   </div>
-  <div class="field">
-    <%= f.label :password %><br />
-    <%= f.password_field :password %>
+  <div class="">
+    <%= f.label :password, :class => "control-label" %>
+    <div class="controls"><%= f.password_field :password %></div>
   </div>
-  <div class="field">
-    <%= f.label :password_confirmation %><br />
-    <%= f.password_field :password_confirmation %>
+  <div class="">
+    <%= f.label :password_confirmation, :class => "control-label" %>
+    <div class="controls"><%= f.password_field :password_confirmation %></div>
   </div>
   <div class="actions">
-    <%= f.submit %>
+    <%= f.submit nil, :class => "btn btn-primary btn-large" %>
   </div>
 <% end %>

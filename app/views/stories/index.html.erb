@@ -1,6 +1,6 @@
-<h1>Listing stories</h1>
+<fieldset><legend>Listing stories</legend></fieldset>
 
-<%= form_for :filter do |f| %>
+<%= form_for :filter, :html => {:class => "well form-inline"} do |f| %>
 <table>
   <tr>
     <td>
@@ -12,13 +12,13 @@
              {:include_blank => '- Select story state -'} %>
     </td>
     <td>
-        <%= f.submit "Filter" %>
+        <%= f.submit "Filter", :class => "btn" %>
     </td>
   </tr>
 </table>
 <% end %>
 
-<table border="1" cellpadding="5">
+<table class="table table-striped table-bordered table-condensed">
   <tr>
     <th>Id</th>
     <th>User</th>
@@ -26,7 +26,6 @@
     <th>Comments</th>
     <th>Content</th>
     <th>State</th>
-    <th></th>
     <th></th>
   </tr>
 
@@ -38,8 +37,8 @@
     <td><%= story.comments.size %></td>
     <td><%= truncate(story.content, :length => 50, :omission => '...') %></td>
     <td><%= story.state %></td>
-    <td><%= link_to 'Edit', edit_story_path(story) %></td>
-    <td><%= link_to 'Destroy', story, :confirm => 'Are you sure?', :method => :delete %></td>
+    <td><%= link_to 'Edit', edit_story_path(story) %><br/>
+    <%= link_to 'Destroy', story, :confirm => 'Are you sure?', :method => :delete %></td>
   </tr>
 <% end %>
 </table>

@@ -1,13 +1,12 @@
-<h1>Listing users</h1>
+<fieldset><legend>Listing users</legend></fieldset>
 
-<table border="1" >
+<table class="table table-striped table-bordered table-condensed">
   <tr>
     <th>Name</th>
     <th>Email</th>
     <th>Role</th>
     <th>Stories</th>
     <th>Comments</th>
-    <th></th>
     <th></th>
   </tr>
 
@@ -18,8 +17,8 @@
     <td><%= user.role %></td>
     <td><%= user.stories.count %></td>
     <td><%= user.comments.count %></td>
-    <td><%= link_to 'Edit', edit_user_path(user) %></td>
-    <td><%= link_to 'Destroy', user, :confirm => 'Are you sure?', :method => :delete %></td>
+    <td><%= link_to 'Edit', edit_user_path(user) %><br/>
+    <%= link_to 'Destroy', user, :confirm => 'Are you sure?', :method => :delete %></td>
   </tr>
 <% end %>
 </table>

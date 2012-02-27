@@ -13,11 +13,30 @@
 */
 
 .top-nav-bar {
-    width: 100%;
+    width: 98%;
     height: 20px;
     clear: both;
+    padding: 10px;
 }
 
 .float-left { float: left; }
 .float-right { float: right; }
 .clear {clear: both; }
+
+body #container {
+    margin: auto;
+    padding: 20px;
+}
+
+.sessions #container {
+    width: 222px;
+}
+
+.stories #container, .users #container {
+    width: 900px;
+}
+
+form.edit_story textarea, #comment_text, #story_content {
+    width: 664px;
+}
+
