@@ -1,5 +1,3 @@
-require 'haml/html'
-
 namespace :hamlify do
   desc "Convert ERB to Haml"
   task :convert => :environment do

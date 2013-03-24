@@ -14,7 +14,7 @@ class CommentsControllerTest < ActionController::TestCase
   end
 
   test "guest can not delete comment" do
-    delete :destroy, :comment => @comment
+    delete :destroy, :id => @comment
     assert_redirected_to login_url
   end
 
